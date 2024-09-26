@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Clientes</h1>
+    <a class="btn btn-primary" th:href="@{/api/clientes/nuevo}">Nuevo Cliente</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>RUC</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente : ${clientes}">
+            <td th:text="${cliente.idCliente}"></td>
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.ruc}"></td>
+            <td th:text="${cliente.direccion}"></td>
+            <td>
+                <a class="btn btn-warning" th:href="@{/api/clientes/editar/{id}(id=${cliente.idCliente})}">Editar</a>
+                <a class="btn btn-danger" th:href="@{/api/clientes/eliminar/{id}(id=${cliente.idCliente})}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
