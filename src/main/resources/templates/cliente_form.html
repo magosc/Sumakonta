@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <h1 th:text="${#strings.isEmpty(cliente.idCliente) ? 'Nuevo Cliente' : 'Editar Cliente'}"></h1>
-    <form th:action="@{/clientes/guardar}" th:object="${cliente}" method="post">
+    <form th:action="@{/api/clientes/guardar}" th:object="${cliente}" method="post">
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Nombre">
@@ -21,7 +21,7 @@
             <input type="text" class="form-control" id="direccion" th:field="*{direccion}" placeholder="Dirección">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a class="btn btn-secondary" th:href="@{/clientes}">Cancelar</a>
+        <a class="btn btn-secondary" th:href="@{/api/clientes}">Cancelar</a>
     </form>
 </div>
 <script th:src="@{/js/bootstrap.min.js}"></script>

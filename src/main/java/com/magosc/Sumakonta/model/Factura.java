@@ -1,25 +1,24 @@
 package com.magosc.Sumakonta.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @Entity
+@Table(name = "factura")
 public class Factura {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private Long idFactura;
 
     private Double monto;
     private LocalDateTime fecha;
 
     @ManyToOne
-    @JoinColumn(name = "idCliente")
-    Cliente cliente;
+    @JoinColumn(name = "idCliente", nullable = false)
+    private Cliente cliente;
 }

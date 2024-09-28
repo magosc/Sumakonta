@@ -1,22 +1,22 @@
 package com.magosc.Sumakonta.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @Entity
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private Long idCliente;
 
     private String nombre;
@@ -30,4 +30,7 @@ public class Cliente {
     private LocalDateTime lastLogin;
     private String token;
     private boolean isActive;
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Factura> facturas;
 }
